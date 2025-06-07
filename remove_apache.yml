@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: update repository index
+    yum:
+      update_cache: yes
+
+  - name: remove apache2 package
+    yum:
+      name: httpd
+      state: absent
+
+  - name: remove php suport for apache
+    yum:
+      name: php
+      state: absent
