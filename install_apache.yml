@@ -7,13 +7,36 @@
   - name: update repository index
     yum:
       update_cache: yes
+    when: ansible_distribution == "Amazon"
 
   - name: install apache2 package
     yum:
       name: httpd
       state: present
+    when: ansible_distribution == "Amazon"
 
   - name: add php suport for apache
     yum:
       name: php
       state: present
+    when: ansible_distribution == "Amazon"
+
+
+#To use same script to target ubuntu servers. you can also use the when condition to target particular distro and versions
+
+- name: update repository index
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install apache2 package
+    apt:
+      name: apache2
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+  - name: add php suport for apache
+    apt:
+      name: libapache2-modphp
+      state: present
+    when: ansible_distribution == "Ubuntu"
