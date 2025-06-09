@@ -1,0 +1,5 @@
+#This contains the ip address or dns name of servers/hosts to automate or mange configuration by running the playbook on.
+ 
+xxxx.xx.xx apache_package=httpd php_package=php
+xxxx.xx.xx apache_package=httpd php_package=php 
+xxxx.xx.xx apache_package=apache2 php_package=libapache2-mod-php  #declaring variable in line with package name on linux distribution
