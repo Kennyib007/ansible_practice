@@ -24,7 +24,7 @@
 
 #To use same script to target ubuntu servers. you can also use the when condition to target particular distro and versions
 
-- name: update repository index
+  - name: update repository index
     apt:
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
