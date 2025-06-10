@@ -1,0 +1,46 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+  
+  - name: install updates (Ubuntu)
+    tags: always
+    apt:
+      update: dist
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install updates (Amazon)
+    tags: always
+    yum:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "Amazon"
+
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create taiwo user
+    tags: always
+    user:
+      name: taiwo
+      groups: root
+
+  - name: add ssh key for taiwo
+    tags: always
+    authorized_key:
+      user: taiwo
+      key: "replace_with_public_key_content"
+
+  - name: add sudoers file for taiwo
+    tags: always
+    copy:
+      src: sudoer_taiwo
+      dest: /etc/sudoers.d/taiwo
+      owner: root
+      group: root
+      mode: 0440
+
